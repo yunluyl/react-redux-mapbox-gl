@@ -5,12 +5,9 @@ const Marker = (props) =>
 {
 	const divStyle =
 	{
-		left : props.pixels[0] - 25.57022603955158414669481207016163464282786458961580121961,
-		top : props.pixels[1] - 25.57022603955158414669481207016163464282786458961580121961,
 		borderStyle : 'solid',
     	borderWidth : '2px',
-    	borderColor : '#fff',
-    	position : 'absolute',
+    	borderColor : '#fff',	
     	pointerEvents : 'none',
     	width : 50,
     	height : 50
@@ -20,27 +17,17 @@ const Marker = (props) =>
 		width : 50,
 		height : 50
 	};
-	if (props.show)
-	{
-		divStyle.display = 'block';
-	}
-	else
-	{
-		divStyle.display = 'none';
-	}
 	let imageUrl;
-	if (props.item.image)
+	if (props.image)
 	{
-		imageUrl = props.item.image;
+		imageUrl = props.image;
 	}
 	else
 	{
 		imageUrl = 'https://s3.amazonaws.com/mapbox-gl-react-redux-example/placeholder.jpg';
 	}
 	return (
-		<div
-			style = {divStyle}
-		>
+		<div style = {divStyle}>
 			<img src={imageUrl} style={imgStyle} />
 		</div>
 	);
@@ -48,9 +35,7 @@ const Marker = (props) =>
 
 Marker.propTypes =
 {
-	show : React.PropTypes.bool.isRequired,
-	pixels : React.PropTypes.array.isRequired,
-	item : React.PropTypes.object.isRequired
+	image : React.PropTypes.string.isRequired
 };
 
 export default Marker;

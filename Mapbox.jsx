@@ -6,11 +6,6 @@ import mapAccessToken from './test/mapToken.js';
 
 class Mapbox extends React.Component
 {
-	handleInitFlyDone = () =>
-	{
-		this.props.dispatch(action.initFlyDone());
-	};
-
 	handleMouseDown = (e) =>
 	{
 		this.props.dispatch(action.mouseDown());
@@ -63,7 +58,6 @@ class Mapbox extends React.Component
 			container : 'map',
 			style : 'mapbox://styles/mapbox/outdoors-v9',
 			zoom : 0,
-			minZoom : 2,
 			dragRotate : false,
 			dragPan : true,
 			keyboard : false
@@ -94,9 +88,65 @@ class Mapbox extends React.Component
 
 	render()
 	{
+		let markerPosition = [];
+		let index = -1;
 		const childrenWithProps = React.Children.map(this.props.children, (child) =>
 		{
-			return React.cloneElement(child, {map : this.map});
+			if (this.props.mapState.mapLoaded)
+			{
+				if (child.props.lnglat)
+				{
+					const viewport = this.props.mapState.viewport;
+					const globPixel = Math.pow(2, viewport.zoom + 9);
+					const lnglat = child.props.lnglat;
+					let showMarker = 'block';
+					const pointPixel = this.map.project(lnglat);
+					const pixels = [pointPixel.x, pointPixel.y];
+					pixels[0] = pixels[0] % globPixel;
+					if (pixels[0] < 0)
+					{
+						pixels[0] += globPixel;
+					}
+					if ((pixels[0] * 2 + globPixel) / 2 <
+						viewport.width / 2)
+					{
+						pixels[0] += globPixel;
+					}
+					if (pixels[0] < -50 || pixels[0] > viewport.width + 50
+						|| pixels[1] < -50 || pixels[1] > viewport.height + 50)
+					{
+						showMarker = 'none';
+					}
+					for (let i = 0; i < markerPosition.length; i++)
+					{
+						if (Math.pow((pixels[0] - markerPosition[i][0]), 2)
+							+ Math.pow((pixels[1] - markerPosition[i][1]), 2)
+							< 100)
+						{
+							showMarker = 'none';
+							break;
+						}
+					}
+					if (showMarker === 'block')
+					{
+						markerPosition.push(pixels);
+					}
+					const markerStyle =
+					{
+						position : 'absolute',
+						left : pixels[0] - 25.57022603955158414669481207016163464282786458961580121961,
+						top : pixels[1] - 25.57022603955158414669481207016163464282786458961580121961,
+						display : showMarker
+					};
+					index++;
+					return (
+						<div key={index} style={markerStyle}>
+							{React.cloneElement(child, {map : this.map})}
+						</div>
+					);
+				}
+			}
+			return;
 		});
 		const divStyle =
 		{
