@@ -2,10 +2,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as action from './mapActions.js';
-import mapAccessToken from './test/mapToken.js';
 
 class Mapbox extends React.Component
 {
+	static propTypes =
+	{
+		accessToken : React.PropTypes.string.isRequired
+	};
+
 	handleMouseDown = (e) =>
 	{
 		this.props.dispatch(action.mouseDown());
@@ -52,16 +56,20 @@ class Mapbox extends React.Component
 
 	componentDidMount()
 	{
-		mapboxgl.accessToken = mapAccessToken;
+		mapboxgl.accessToken = this.props.accessToken;
 		this.map = new mapboxgl.Map(
 		{
 			container : 'map',
 			style : 'mapbox://styles/mapbox/outdoors-v9',
 			zoom : 0,
-			dragRotate : false,
+			dragRotate : true,
 			dragPan : true,
-			keyboard : false
+			keyboard : true
 		});
+		if (this.props.getMap)
+		{
+			this.props.getMap(this.map);
+		}
 		this.map.addControl(new mapboxgl.Navigation({position : 'bottom-right'}));
 		this.handleViewportChange();
 
@@ -99,7 +107,6 @@ class Mapbox extends React.Component
 					const viewport = this.props.mapState.viewport;
 					const globPixel = Math.pow(2, viewport.zoom + 9);
 					const lnglat = child.props.lnglat;
-					let showMarker = 'block';
 					const pointPixel = this.map.project(lnglat);
 					const pixels = [pointPixel.x, pointPixel.y];
 					pixels[0] = pixels[0] % globPixel;
@@ -112,10 +119,10 @@ class Mapbox extends React.Component
 					{
 						pixels[0] += globPixel;
 					}
-					if (pixels[0] < -50 || pixels[0] > viewport.width + 50
-						|| pixels[1] < -50 || pixels[1] > viewport.height + 50)
+					if (pixels[0] < 0 || pixels[0] > viewport.width
+						|| pixels[1] < 0 || pixels[1] > viewport.height)
 					{
-						showMarker = 'none';
+						return;
 					}
 					for (let i = 0; i < markerPosition.length; i++)
 					{
@@ -123,24 +130,33 @@ class Mapbox extends React.Component
 							+ Math.pow((pixels[1] - markerPosition[i][1]), 2)
 							< 100)
 						{
-							showMarker = 'none';
-							break;
+							return;
 						}
 					}
-					if (showMarker === 'block')
-					{
-						markerPosition.push(pixels);
-					}
-					const markerStyle =
+					markerPosition.push(pixels);
+					const childStyle =
 					{
 						position : 'absolute',
 						left : pixels[0] - 25.57022603955158414669481207016163464282786458961580121961,
 						top : pixels[1] - 25.57022603955158414669481207016163464282786458961580121961,
-						display : showMarker
 					};
 					index++;
 					return (
-						<div key={index} style={markerStyle}>
+						<div key={index} style={childStyle}>
+							{React.cloneElement(child, {map : this.map})}
+						</div>
+					);
+				}
+				else
+				{
+					const childStyle =
+					{
+						position : 'absolute',
+						left : 0,
+						top : 0,
+					};
+					return (
+						<div key={index} style={childStyle}>
 							{React.cloneElement(child, {map : this.map})}
 						</div>
 					);
@@ -164,6 +180,7 @@ class Mapbox extends React.Component
 			position : 'absolute',
 			width : '100%',
 			height : '100%',
+			overflow : 'hidden',
 			pointerEvents : 'none',
 			left : 0,
 			top : 0

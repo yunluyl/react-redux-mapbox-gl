@@ -7,11 +7,6 @@ html, body, body > div, {
 	z-index : 1;
 }
 
-.mapboxgl-ctrl-compass
-{
-	display : none !important;
-}
-
 /*! normalize.css v4.2.0 | MIT License | github.com/necolas/normalize.css */
 
 /**

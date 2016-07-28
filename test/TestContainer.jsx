@@ -4,9 +4,15 @@ import {connect} from 'react-redux';
 import * as action from '../mapActions.js';
 import Mapbox from '../Mapbox.jsx';
 import Marker from './Marker.jsx';
+import mapAccessToken from './mapToken.js';
 
 class TestContainer extends React.Component
 {
+	getMap = (map) =>
+	{
+		this.map = map;
+	};
+
 	componentWillMount()
 	{
 		this.items =
@@ -35,6 +41,14 @@ class TestContainer extends React.Component
         this.props.dispatch(action.reset());
     }
 
+    componentDidMount()
+    {
+    	this.map.on('load', function(e)
+    	{
+    		console.log('map loaded!');
+    	});
+    }
+
 	render()
 	{
 		const divStyle =
@@ -43,8 +57,14 @@ class TestContainer extends React.Component
 		};
 		return (
 			<div style={divStyle}>
-				<Mapbox>
+				<Mapbox
+					accessToken={mapAccessToken}
+					getMap={this.getMap}
+				>
 					<Marker lnglat={this.items[0].lnglat} image={this.items[0].image}/>
+					<Marker lnglat={this.items[1].lnglat} image={this.items[1].image}/>
+					<Marker lnglat={this.items[2].lnglat} image={this.items[2].image}/>
+					<Marker lnglat={this.items[3].lnglat} image={this.items[3].image}/>
 				</Mapbox>
 			</div>
 		);

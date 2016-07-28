@@ -35,3 +35,11 @@ module.exports.mapLoad = function()
 		type : AD.MAP_LOAD
 	};
 };
+
+module.exports.mapInit = function(map)
+{
+	return {
+		type : AD.MAP_INIT,
+		map
+	};
+}
