@@ -36,11 +36,6 @@ class TestContainer extends React.Component
 		]
 	}
 
-	componentWillUnmount()
-    {
-        this.props.dispatch(action.reset());
-    }
-
     componentDidMount()
     {
     	this.map.on('load', function(e)
@@ -51,22 +46,31 @@ class TestContainer extends React.Component
 
 	render()
 	{
-		const divStyle =
+		const mapChildren = this.items.map((item, i) =>
 		{
-			height : '100%'
-		};
+			const overlay =
+			{
+				lnglat : item.lnglat,
+				width : 30 + i * 5,
+				height : 30 + i * 5,
+				neighborDistance : 15
+			};
+			return (
+				<Marker
+					key={i}
+					overlay={overlay}
+					image={item.image}
+				/>
+			);
+		});
 		return (
-			<div style={divStyle}>
-				<Mapbox
-					accessToken={mapAccessToken}
-					getMap={this.getMap}
-				>
-					<Marker lnglat={this.items[0].lnglat} image={this.items[0].image}/>
-					<Marker lnglat={this.items[1].lnglat} image={this.items[1].image}/>
-					<Marker lnglat={this.items[2].lnglat} image={this.items[2].image}/>
-					<Marker lnglat={this.items[3].lnglat} image={this.items[3].image}/>
-				</Mapbox>
-			</div>
+			<Mapbox
+				accessToken={mapAccessToken}
+				getMap={this.getMap}
+				boundMargin={15}
+			>
+				{mapChildren}
+			</Mapbox>
 		);
 	}
 }

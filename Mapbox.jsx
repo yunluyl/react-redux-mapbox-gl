@@ -88,6 +88,7 @@ class Mapbox extends React.Component
 	{
 		window.removeEventListener('resize', this.handleResize);
 		window.removeEventListener('mouseup', this.handleMouseUp);
+		this.props.dispatch(action.reset());
 		if (this.map)
 		{
 			this.map.remove();
@@ -96,74 +97,146 @@ class Mapbox extends React.Component
 
 	render()
 	{
-		let markerPosition = [];
-		let index = -1;
-		const childrenWithProps = React.Children.map(this.props.children, (child) =>
+		let overlays;
+		if (this.props.children)
 		{
-			if (this.props.mapState.mapLoaded)
+			let childrenWithProps = [];
+			let boundMargin;
+			if (this.props.boundMargin)
 			{
-				if (child.props.lnglat)
+				boundMargin = this.props.boundMargin;
+			}
+			else
+			{
+				boundMargin = 0;
+			}
+			let index = -1;
+			for (let i = this.props.children.length - 1; i >= 0; i--)
+			{
+				const child = this.props.children[i];
+				let hideMarker = false;
+				if (this.props.mapState.mapLoaded)
 				{
-					const viewport = this.props.mapState.viewport;
-					const globPixel = Math.pow(2, viewport.zoom + 9);
-					const lnglat = child.props.lnglat;
-					const pointPixel = this.map.project(lnglat);
-					const pixels = [pointPixel.x, pointPixel.y];
-					pixels[0] = pixels[0] % globPixel;
-					if (pixels[0] < 0)
+					if (child.props.overlay)
 					{
-						pixels[0] += globPixel;
-					}
-					if ((pixels[0] * 2 + globPixel) / 2 <
-						viewport.width / 2)
-					{
-						pixels[0] += globPixel;
-					}
-					if (pixels[0] < 0 || pixels[0] > viewport.width
-						|| pixels[1] < 0 || pixels[1] > viewport.height)
-					{
-						return;
-					}
-					for (let i = 0; i < markerPosition.length; i++)
-					{
-						if (Math.pow((pixels[0] - markerPosition[i][0]), 2)
-							+ Math.pow((pixels[1] - markerPosition[i][1]), 2)
-							< 100)
+						const viewport = this.props.mapState.viewport;
+						const globPixel = Math.pow(2, viewport.zoom + 9);
+						const lnglat = child.props.overlay.lnglat;
+						const pointPixel = this.map.project(lnglat);
+						const pixels = [pointPixel.x, pointPixel.y];
+						pixels[0] = pixels[0] % globPixel;
+						if (pixels[0] < (viewport.width - 3 * globPixel) / 2)
 						{
-							return;
+							pixels[0] += 2 * globPixel;
 						}
+						else if (pixels[0] < (viewport.width - globPixel) / 2)
+						{
+							pixels[0] += globPixel;
+						}
+						if (pixels[0] < -boundMargin || pixels[0] > viewport.width + boundMargin
+							|| pixels[1] < -boundMargin || pixels[1] > viewport.height + boundMargin)
+						{
+							continue;
+						}
+						for (let i = 0; i < childrenWithProps.length; i++)
+						{
+							const idxChild = childrenWithProps[i].props.children;
+							let neighborDistance;
+							if (!idxChild.props.overlay)
+							{
+								continue;
+							}
+							if (!child.props.overlay.neighborDistance && !idxChild.props.overlay.neighborDistance)
+							{
+								continue;
+							}
+							if (child.props.overlay.neighborDistance && !idxChild.props.overlay.neighborDistance)
+							{
+								neighborDistance = child.props.overlay.neighborDistance;
+							}
+							else if (!child.props.overlay.neighborDistance && idxChild.props.overlay.neighborDistance)
+							{
+								neighborDistance = idxChild.props.overlay.neighborDistance;
+							}
+							else
+							{
+								neighborDistance = Math.max(child.props.overlay.neighborDistance, idxChild.props.overlay.neighborDistance);
+							}
+							if (neighborDistance === 0)
+							{
+								continue;
+							}
+							if (idxChild.props.pixels)
+							{
+								if (Math.pow((pixels[0] - idxChild.props.pixels[0]), 2)
+									+ Math.pow((pixels[1] - idxChild.props.pixels[1]), 2)
+									< Math.pow(neighborDistance, 2))
+								{
+									hideMarker = true;
+									break;
+								}
+							}
+						}
+						if (hideMarker)
+						{
+							continue;
+						}
+						const childStyle =
+						{
+							position : 'absolute',
+							left : pixels[0],
+							top : pixels[1]
+						};
+						if (child.props.overlay.width)
+						{
+							childStyle.left -= child.props.overlay.width / 2;
+							childStyle.width = child.props.overlay.width;
+						}
+						if (child.props.overlay.height)
+						{
+							childStyle.top -= child.props.overlay.height / 2;
+							childStyle.height = child.props.overlay.height;
+						}
+						index++;
+						childrenWithProps.unshift(
+							<div key={index} style={childStyle}>
+								{React.cloneElement(child, {map : this.map, pixels : pixels})}
+							</div>
+						);
 					}
-					markerPosition.push(pixels);
-					const childStyle =
+					else
 					{
-						position : 'absolute',
-						left : pixels[0] - 25.57022603955158414669481207016163464282786458961580121961,
-						top : pixels[1] - 25.57022603955158414669481207016163464282786458961580121961,
-					};
-					index++;
-					return (
-						<div key={index} style={childStyle}>
-							{React.cloneElement(child, {map : this.map})}
-						</div>
-					);
-				}
-				else
-				{
-					const childStyle =
-					{
-						position : 'absolute',
-						left : 0,
-						top : 0,
-					};
-					return (
-						<div key={index} style={childStyle}>
-							{React.cloneElement(child, {map : this.map})}
-						</div>
-					);
+						const childStyle =
+						{
+							position : 'absolute',
+							left : 0,
+							top : 0,
+						};
+						index++;
+						childrenWithProps.unshift(
+							<div key={index} style={childStyle}>
+								{React.cloneElement(child, {map : this.map})}
+							</div>
+						);
+					}
 				}
 			}
-			return;
-		});
+			const overlayStyle =
+			{
+				position : 'absolute',
+				width : '100%',
+				height : '100%',
+				overflow : 'hidden',
+				pointerEvents : 'none',
+				left : 0,
+				top : 0
+			};
+			overlays = (
+				<div id='overlays' style={overlayStyle}>
+					{childrenWithProps}
+				</div>
+			);
+		}
 		const divStyle =
 		{
 			height : '100%'
@@ -175,22 +248,10 @@ class Mapbox extends React.Component
 			width : '100%',
 			overflow : 'hidden'
 		};
-		const overlayStyle =
-		{
-			position : 'absolute',
-			width : '100%',
-			height : '100%',
-			overflow : 'hidden',
-			pointerEvents : 'none',
-			left : 0,
-			top : 0
-		}
 		return (
 			<div style={divStyle}>
 				<div id='map' style={mapStyle} />
-				<div id='overlays' style={overlayStyle}>
-					{childrenWithProps}
-				</div>
+				{overlays}
 			</div>
 		);
 	}
