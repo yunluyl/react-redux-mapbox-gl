@@ -1,0 +1,11 @@
+#!/bin/bash
+git fetch yunsv master
+git status
+read -p "Ready to update local project?[Y/N] " -n 1 -r
+# echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    git stash
+	git stash drop
+	git merge
+fi
