@@ -63,9 +63,27 @@ class TestContainer extends React.Component
 				/>
 			);
 		});
+		const mapboxStyle =
+		{
+			position : 'fixed',
+			width : 500,
+			height : 500,
+			top : 100,
+			left : 300,
+		};
+		const options =
+		{
+			style : 'mapbox://styles/mapbox/outdoors-v9',
+			zoom : 0,
+			dragRotate : true,
+			dragPan : true,
+			keyboard : true
+		};
 		return (
 			<Mapbox
+				style={mapboxStyle}
 				accessToken={mapAccessToken}
+				options={options}
 				getMap={this.getMap}
 				boundMargin={15}
 			>

@@ -8,7 +8,7 @@ import reduxReducer from './reducer.js';
 import TestContainer from './TestContainer.jsx';
 
 const loggerMiddleware = createLogger();
-const store = createStore(reduxReducer, applyMiddleware(loggerMiddleware));
+const store = createStore(reduxReducer, applyMiddleware(loggerMiddleware)); //, applyMiddleware(loggerMiddleware)
 
 render(
 	<Provider store={store}>

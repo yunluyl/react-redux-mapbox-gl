@@ -1,10 +1,22 @@
-html, body, body > div, {
-	height : 100%;
+html {
+  height : 100%;
 }
 
-.mapboxgl-ctrl-bottom-right
-{
-	z-index : 1;
+body {
+  height : 100%;
+}
+
+#root {
+  height : 100%;
+}
+
+.mapboxgl-ctrl-bottom-right {
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mapboxgl-ctrl {
+  pointer-events: all;
 }
 
 /*! normalize.css v4.2.0 | MIT License | github.com/necolas/normalize.css */

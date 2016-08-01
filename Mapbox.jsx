@@ -10,24 +10,23 @@ class Mapbox extends React.Component
 		accessToken : React.PropTypes.string.isRequired
 	};
 
-	handleMouseDown = (e) =>
+	static defaultProps =
 	{
-		this.props.dispatch(action.mouseDown());
+		mapEventListener : true
+	};
+
+	mapDivRef = (c) =>
+	{
+		this.mapDiv = c;
 	};
 
 	handleMouseUp = (e) =>
 	{
-		this.props.dispatch(action.mouseUp());
 		if (this.dragged)
 		{
 			this.map.stop();
 			this.dragged = false;
 		}
-	};
-
-	handleDragStart = (e) =>
-	{
-		this.dragged = true;
 	};
 
 	handleResize = (e) =>
@@ -37,16 +36,80 @@ class Mapbox extends React.Component
 
 	handleViewportChange = () =>
 	{
+		const size = this.mapDiv.getBoundingClientRect();
 		const lnglat = this.map.getCenter();
 		const viewport =
 		{
-			width : window.innerWidth,
-			height : window.innerHeight,
+			width : size.width,
+			height : size.height,
 			lng : lnglat.lng,
 			lat : lnglat.lat,
 			zoom : this.map.getZoom()
 		};
 		this.props.dispatch(action.setViewport(viewport));
+	};
+
+	handleDragStart = (e) =>
+	{
+		this.dragged = true;
+		this.props.dispatch(action.dragStart());
+	};
+	handleDragEnd = (e) =>
+	{
+		this.props.dispatch(action.dragEnd());
+	};
+
+	handleTouchStart = (e) =>
+	{
+		this.props.dispatch(action.touchStart());
+	};
+	handleTouchEnd = (e) =>
+	{
+		this.props.dispatch(action.touchEnd());
+	};
+	handleTouchCancel = (e) =>
+	{
+		this.props.dispatch(action.touchCancel());
+	};
+
+	handleMoveStart = (e) =>
+	{
+		this.props.dispatch(action.moveStart());
+	};
+	handleMoveEnd = (e) =>
+	{
+		this.props.dispatch(action.moveEnd());
+	};
+
+	handleZoomStart = (e) =>
+	{
+		this.props.dispatch(action.zoomStart());
+	};
+	handleZoomEnd = (e) =>
+	{
+		this.props.dispatch(action.zoomEnd());
+	};
+
+	handleBoxZoomStart = (e) =>
+	{
+		this.props.dispatch(action.boxZoomStart());
+	};
+	handleBoxZoomEnd = (e) =>
+	{
+		this.props.dispatch(action.boxZoomEnd());
+	};
+	handleBoxZoomCancel = (e) =>
+	{
+		this.props.dispatch(action.boxZoomCancel());
+	};
+
+	handleRotateStart = (e) =>
+	{
+		this.props.dispatch(action.rotateStart());
+	};
+	handleRotateEnd = (e) =>
+	{
+		this.props.dispatch(action.rotateEnd());
 	};
 
 	componentWillMount()
@@ -56,16 +119,19 @@ class Mapbox extends React.Component
 
 	componentDidMount()
 	{
-		mapboxgl.accessToken = this.props.accessToken;
-		this.map = new mapboxgl.Map(
+		let mapboxRef;
+		if (this.props.mapboxgl)
 		{
-			container : 'map',
-			style : 'mapbox://styles/mapbox/outdoors-v9',
-			zoom : 0,
-			dragRotate : true,
-			dragPan : true,
-			keyboard : true
-		});
+			mapboxRef = this.props.mapboxgl;
+		}
+		else
+		{
+			mapboxRef = mapboxgl;
+		}
+		mapboxRef.accessToken = this.props.accessToken;
+		const options = Object.assign({container : 'map'}, this.props.options);
+		console.log(options);
+		this.map = new mapboxgl.Map(options);
 		if (this.props.getMap)
 		{
 			this.props.getMap(this.map);
@@ -74,14 +140,34 @@ class Mapbox extends React.Component
 		this.handleViewportChange();
 
 		this.map.on('move', this.handleViewportChange);
-		this.map.on('mousedown', this.handleMouseDown);
-		this.map.on('dragstart', this.handleDragStart);
 		this.map.on('load', (e) =>
 		{
 			this.props.dispatch(action.mapLoad());
 		});
 		window.addEventListener('resize', this.handleResize);
 		window.addEventListener('mouseup', this.handleMouseUp);
+		if (this.props.mapEventListener)
+		{
+			this.map.on('dragstart', this.handleDragStart);
+			this.map.on('dragend', this.handleDragEnd);
+
+			this.map.on('touchstart', this.handleTouchStart);
+			this.map.on('touchend', this.handleTouchEnd);
+			this.map.on('touchcancel', this.handleTouchCancel);
+
+			this.map.on('movestart', this.handleMoveStart);
+			this.map.on('moveend', this.handleMoveEnd);
+
+			this.map.on('zoomstart', this.handleZoomStart);
+			this.map.on('zoomend', this.handleZoomEnd);
+
+			this.map.on('boxzoomstart', this.handleBoxZoomStart);
+			this.map.on('boxzoomend', this.handleBoxZoomEnd);
+			this.map.on('boxzoomcancel', this.handleBoxZoomCancel);
+
+			this.map.on('rotatestart', this.handleRotateStart);
+			this.map.on('rotateend', this.handleRotateEnd);
+		}
 	}
 
 	componentWillUnmount()
@@ -224,8 +310,8 @@ class Mapbox extends React.Component
 			const overlayStyle =
 			{
 				position : 'absolute',
-				width : '100%',
-				height : '100%',
+				width : this.props.style.width,
+				height : this.props.style.height,
 				overflow : 'hidden',
 				pointerEvents : 'none',
 				left : 0,
@@ -237,19 +323,16 @@ class Mapbox extends React.Component
 				</div>
 			);
 		}
-		const divStyle =
-		{
-			height : '100%'
-		};
+		const divStyle = this.props.style;
 		const mapStyle =
 		{
 			position : 'absolute',
-			height : '100%',
-			width : '100%',
+			width : this.props.style.width,
+			height : this.props.style.height,
 			overflow : 'hidden'
 		};
 		return (
-			<div style={divStyle}>
+			<div ref={this.mapDivRef} id='mapWrap' style={divStyle}>
 				<div id='map' style={mapStyle} />
 				{overlays}
 			</div>
