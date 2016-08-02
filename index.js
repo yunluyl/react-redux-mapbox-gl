@@ -1,2 +1,2 @@
-module.exports.Mapbox = require('./Mapbox.jsx');
+module.exports = require('./Mapbox.jsx');
 module.exports.MapReducer = require('./mapReducer.jsx');

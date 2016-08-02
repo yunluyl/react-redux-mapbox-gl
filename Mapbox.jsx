@@ -7,6 +7,7 @@ class Mapbox extends React.Component
 {
 	static propTypes =
 	{
+		style : React.PropTypes.object.isRequired,
 		accessToken : React.PropTypes.string.isRequired
 	};
 
@@ -130,13 +131,11 @@ class Mapbox extends React.Component
 		}
 		mapboxRef.accessToken = this.props.accessToken;
 		const options = Object.assign({container : 'map'}, this.props.options);
-		console.log(options);
-		this.map = new mapboxgl.Map(options);
+		this.map = new mapboxRef.Map(options);
 		if (this.props.getMap)
 		{
 			this.props.getMap(this.map);
 		}
-		this.map.addControl(new mapboxgl.Navigation({position : 'bottom-right'}));
 		this.handleViewportChange();
 
 		this.map.on('move', this.handleViewportChange);
