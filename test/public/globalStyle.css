@@ -10,13 +10,16 @@ body {
   height : 100%;
 }
 
+.mapboxgl-ctrl-top-left,
+.mapboxgl-ctrl-top-right,
+.mapboxgl-ctrl-bottom-left,
 .mapboxgl-ctrl-bottom-right {
   pointer-events: none;
   z-index: 1;
 }
 
 .mapboxgl-ctrl {
-  pointer-events: all;
+  pointer-events: auto;
 }
 
 /*! normalize.css v4.2.0 | MIT License | github.com/necolas/normalize.css */

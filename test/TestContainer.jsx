@@ -42,6 +42,8 @@ class TestContainer extends React.Component
     	{
     		console.log('map loaded!');
     	});
+    	this.map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
+    	this.map.addControl(new mapboxgl.Geolocate({position: 'bottom-right'}));
     }
 
 	render()
