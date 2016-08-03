@@ -47,7 +47,7 @@ render()
 }
 ...
 ````
-### Using Mapbox GL `<script>` tag
+### Using Mapbox GL with `<script>` tag
 ````js
 import Mapbox from 'react-redux-mapbox-gl';
 ...
