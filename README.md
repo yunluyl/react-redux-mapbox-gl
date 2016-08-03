@@ -39,7 +39,7 @@ render()
 }
 ...
 ````
-If you use <script> tag
+If you use `<script>` tag
 ````js
 import Mapbox from 'react-redux-mapbox-gl';
 ...
