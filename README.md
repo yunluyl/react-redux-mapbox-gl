@@ -71,7 +71,7 @@ render()
 ### `<Mapbox>` props
  Property | Type | Required | Description |
 :--------:|:----:|:--------:|-------------|
- mapboxgl | object | no | mapboxgl object from Mapbox GL JS </br> If using Mapbox GL JS with `<script>` tag, omit this prop |
+ mapboxgl | object | no | mapboxgl object from Mapbox GL JS, </br> If using Mapbox GL JS with `<script>` tag, omit this prop |
  accessToken | string | yes | Mapbox API access token |
- options | object | yes | Mapbox [options](https://www.mapbox.com/mapbox-gl-js/api/#Map) used to create a new Map object </br> options.style is required |
+ options | object | yes | Mapbox [options](https://www.mapbox.com/mapbox-gl-js/api/#Map) used to create a new Map object, </br> options.style is required |
 
