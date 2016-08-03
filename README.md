@@ -1,6 +1,6 @@
 # react-redux-mapbox-gl
 
-react-redux-mapbox-gl provides a React Mapbox element and a Redux state reducer for the map. Mapbox GL and your React overlays on the map can be conveniently integrated into your React-Redux design. All Mapbox GL APIs are still available.
+react-redux-mapbox-gl provides a React Mapbox element and a Redux state reducer for the map. Mapbox GL and your React overlays on the map can be conveniently integrated into your React-Redux app. All Mapbox GL APIs are still available.
 
 ![react-redux-mapbox-gl-screenshot](/assets/react-redux-mapbox-gl.png)
 
@@ -66,3 +66,8 @@ render()
 }
 ...
 ````
+### `<Mapbox>` props
+```
+mapboxgl: [object] mapboxgl object from Mapbox GL JS; If using Mapbox GL JS with <script> tag, omit this prop
+accessToken: [string] Mapbox API access token (required)
+```
