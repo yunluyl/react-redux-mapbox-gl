@@ -10,6 +10,13 @@
 ```
 npm install react-redux-mapbox-gl --save
 ```
+## Example
+In root directory of this module
+```
+npm install
+npm test
+```
+Server starts at localhost:3000
 
 ## Usage
 ### Using Browserify or Webpack
