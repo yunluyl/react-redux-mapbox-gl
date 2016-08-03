@@ -10,7 +10,7 @@ npm install react-redux-mapbox-gl --save
 ```
 
 ## Usage
-If you use Browserify or Webpack
+###Using Browserify or Webpack
 ````js
 import Mapbox from 'react-redux-mapbox-gl';
 import mapboxgl from 'mapbox-gl';
@@ -39,7 +39,7 @@ render()
 }
 ...
 ````
-If you use `<script>` tag
+###Using `<script>` tag
 ````js
 import Mapbox from 'react-redux-mapbox-gl';
 ...
