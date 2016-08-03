@@ -53,8 +53,8 @@ class TestContainer extends React.Component
 			const overlay =
 			{
 				lnglat : item.lnglat,
-				width : 30 + i * 5,
-				height : 30 + i * 5,
+				width : 50 + i * 5,
+				height : 50 + i * 5,
 				neighborDistance : 15
 			};
 			return (
@@ -68,10 +68,10 @@ class TestContainer extends React.Component
 		const mapboxStyle =
 		{
 			position : 'fixed',
-			width : 500,
-			height : 500,
-			top : 100,
-			left : 300,
+			width : 1200,
+			height : 800,
+			top : 0,
+			left : 0
 		};
 		const options =
 		{
