@@ -19,21 +19,21 @@ npm test
 Server starts at localhost:3000
 
 ## Usage
-### Using Browserify or Webpack
+### Using Mapbox GL with Browserify or Webpack
 ````js
 import Mapbox from 'react-redux-mapbox-gl';
 import mapboxgl from 'mapbox-gl';
 ...
 render()
 {
-  const mapOptions =
-  {
-    style : 'mapbox://styles/mapbox/streets-v9'
-  };
   const mapStyle =
   {
     width : 200,
     height : 300
+  };
+  const mapOptions =
+  {
+    style : 'mapbox://styles/mapbox/streets-v9'
   };
   
   return (
@@ -47,20 +47,20 @@ render()
 }
 ...
 ````
-### Using `<script>` tag
+### Using Mapbox GL `<script>` tag
 ````js
 import Mapbox from 'react-redux-mapbox-gl';
 ...
 render()
 {
-  const mapOptions =
-  {
-    style : 'mapbox://styles/mapbox/streets-v9'
-  };
   const mapStyle =
   {
     width : 200,
     height : 300
+  };
+  const mapOptions =
+  {
+    style : 'mapbox://styles/mapbox/streets-v9'
   };
   
   return (
