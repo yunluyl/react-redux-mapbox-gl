@@ -69,6 +69,8 @@ render()
 ...
 ````
 ### `<Mapbox>` props
-* mapboxgl: [object] mapboxgl object from Mapbox GL JS; If using Mapbox GL JS with <script> tag, omit this prop
-* accessToken: [string] Mapbox API access token (required
+```
+mapboxgl: [object] mapboxgl object from Mapbox GL JS; If using Mapbox GL JS with <script> tag, omit this prop
+accessToken: [string] Mapbox API access token (required
+```
 
