@@ -12,7 +12,7 @@ npm install react-redux-mapbox-gl --save
 ```
 
 ## Usage
-###Using Browserify or Webpack
+### Using Browserify or Webpack
 ````js
 import Mapbox from 'react-redux-mapbox-gl';
 import mapboxgl from 'mapbox-gl';
@@ -35,13 +35,12 @@ render()
       accessToken="your map access token"
       style={this.mapStyle}
       options={this.mapOptions}
-    >
-    </Mapbox>
+    />
   );
 }
 ...
 ````
-###Using `<script>` tag
+### Using `<script>` tag
 ````js
 import Mapbox from 'react-redux-mapbox-gl';
 ...
@@ -62,16 +61,25 @@ render()
       accessToken="your map access token"
       style={this.mapStyle}
       options={this.mapOptions}
-    >
-    </Mapbox>
+    />
   );
 }
 ...
 ````
+### Combine MapReducer into Redux
+
+### Add overlay
+
+
+## Spec
 ### `<Mapbox>` props
  Property | Type | Required | Description |
 :--------:|:----:|:--------:|-------------|
  mapboxgl | object | no | mapboxgl object from Mapbox GL JS, </br> If using Mapbox GL JS with `<script>` tag, omit this prop |
  accessToken | string | yes | Mapbox API access token |
  options | object | yes | Mapbox [options](https://www.mapbox.com/mapbox-gl-js/api/#Map) used to create a new Map object, </br> options.style is required |
+#### Examples
 
+### MapReducer states
+
+### Overlay props
