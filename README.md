@@ -71,7 +71,7 @@ render()
 ### `<Mapbox>` props
  Property | Type | Required | Description |
 :--------:|:----:|:--------:|-------------|
- mapboxgl | object | no | mapboxgl object from Mapbox GL JS; If using Mapbox GL JS with `<script>` tag, omit this prop |
+ mapboxgl | object | no | mapboxgl object from Mapbox GL JS; </br> If using Mapbox GL JS with `<script>` tag, omit this prop |
  accessToken | string | yes | Mapbox API access token |
  accessToken | string | yes | Mapbox API access token |
 
