@@ -137,9 +137,9 @@ var mapReducer =
 	{  
 		width : 0, //(number) width of the map
 		height : 0, //(number) height of the map
-		lng : (number) the longitude that the map is currently centered at,
-		lat : (number) the latitude that the map is currently centered at,
-		zoom : (number) the current zoom level of the map
+		lng : 0, //(number) the longitude that the map is currently centered at
+		lat : 0, //(number) the latitude that the map is currently centered at
+		zoom : 0 //(number) the current zoom level of the map
 	}
 };
 ````
@@ -150,18 +150,18 @@ var mapReducer =
 	mapLoaded : false, //(boolean) set to true when the inital map loading is done
 	viewport :
 	{
-		width : (number) width of the map,
-		height : (number) height of the map,
-		lng : (number) the longitude that the map is currently centered at,
-		lat : (number) the latitude that the map is currently centered at,
-		zoom : (number) the current zoom level of the map
+		width : , //(number) width of the map
+		height : , //(number) height of the map
+		lng : , //(number) the longitude that the map is currently centered at
+		lat : , //(number) the latitude that the map is currently centered at
+		zoom : 0 //(number) the current zoom level of the map
 	}
-	drag : (boolean) set to true when user is dragging the map, false otherwise,
-	touch : (boolean) set to true when user is touching the map, false otherwise,
-	move : (boolean) set to true when the map is moving, false otherwise,
-	zoom : (boolean) set to true when the map is zooming, false otherwise,
-	boxzoom : (boolean) set to true when user is using boxzoom, false otherwise,
-	rotate : (boolean) set to true when user is rotating the map, false otherwise
+	drag : undefined, //(boolean) set to true when user is dragging the map, false otherwise
+	touch : undefined, //(boolean) set to true when user is touching the map, false otherwise
+	move : undefined, //(boolean) set to true when the map is moving, false otherwise
+	zoom : undefined, //(boolean) set to true when the map is zooming, false otherwise
+	boxzoom : undefined, //(boolean) set to true when user is using boxzoom, false otherwise
+	rotate : undefined //(boolean) set to true when user is rotating the map, false otherwise
 };
 ````js
 ### Overlay props
