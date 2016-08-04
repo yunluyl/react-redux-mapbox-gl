@@ -96,7 +96,7 @@ render(
 );
 ...
 ````
-### Add overlay
+### Add overlays
 
 ## Prerequisites
 
