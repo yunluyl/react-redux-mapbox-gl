@@ -113,6 +113,31 @@ render(
  boundMargin | number | no | 0 | Adjust the distance from the boundary of the map that overlays stop displaying
  
 #### Examples
+Use Mapbox APIs in parent module
+````js
+class example extends React.Component
+{
+  getMap = (map) =>
+  {
+  	this.map = map;
+  };
+  
+  componentDidMount()
+  {
+  	this.map.addControl(new mapboxgl.Navigation({position: 'top-left'}));
+  }
+
+  render()
+  {
+    return (
+      <Mapbox
+        getMap={this.getMap}
+        //...other props
+      />
+    );
+  }
+}
+````
  
 ### Overlay props
 
