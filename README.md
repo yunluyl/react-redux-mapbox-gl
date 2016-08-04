@@ -109,8 +109,8 @@ render()
   };
   const childProps2 = {
     lnglat : [-132.2, 40.05],
-    width : 80,
-    height : 80,
+    width : 80 + Math.random() * 10,
+    height : 80 + Math.random() * 10,
     neighborDistance : 30
   }; 
   return (
