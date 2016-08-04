@@ -130,13 +130,13 @@ export default connect(mapState)(example);
 ````
 If `<Mapbox>` prop mapEventListener is false
 ```
-mapReducer =
+var mapReducer =
 {
-	mapLoaded : (boolean) set to true when the inital map loading is done,
+	mapLoaded : false, //(boolean) set to true when the inital map loading is done
 	viewport :
 	{  
-		width : (number) width of the map,
-		height : (number) height of the map,
+		width : 0, //(number) width of the map
+		height : 0, //(number) height of the map
 		lng : (number) the longitude that the map is currently centered at,
 		lat : (number) the latitude that the map is currently centered at,
 		zoom : (number) the current zoom level of the map
@@ -145,7 +145,7 @@ mapReducer =
 ```
 If `<Mapbox>` prop mapEventListener is true
 ```
-mapReducer =
+var mapReducer =
 {
 	mapLoaded : false, //(boolean) set to true when the inital map loading is done
 	viewport :
