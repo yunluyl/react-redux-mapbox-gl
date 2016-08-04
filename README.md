@@ -102,11 +102,14 @@ render(
 
 ## Spec
 ### `<Mapbox>` props
- Property | Type | Required | Description |
-:--------:|:----:|:--------:|-------------|
- mapboxgl | object | no | mapboxgl object from Mapbox GL JS, </br> If using Mapbox GL JS with `<script>` tag, omit this prop |
- accessToken | string | yes | Mapbox API access token |
- options | object | yes | [Mapbox options](https://www.mapbox.com/mapbox-gl-js/api/#Map) used to create a new Map object, </br> options.style is required |
+ Property | Type | Required | Default | Description |
+:--------:|:----:|:--------:|:-------:|-------------|
+ mapboxgl | object | no | undefined | mapboxgl object from Mapbox GL JS, </br> If using Mapbox GL JS with `<script>` tag, omit this prop |
+ accessToken | string | yes | undefined | Mapbox API access token |
+ options | object | yes | undefined | [Mapbox options](https://www.mapbox.com/mapbox-gl-js/api/#Map) used to create a new Map object; </br> options.style is required; |
+ style | object | yes | undefined | React inline CSS style object used to style the container of the map; </br> style.width is required; </br> style.height is required; |
+ mapEventListener | boolean | no | true | Enables/disables event listeners that control mapReducer state changes; see MapReducer states section for details |
+ boundMargin | number | no | 0 | Adjust the distance from the boundary of the map that overlays stop displaying
  
 #### Examples
  
