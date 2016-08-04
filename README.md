@@ -74,7 +74,16 @@ render()
 ...
 ````
 ### Combine MapReducer into Redux
+````js
+import {combineReducers} from 'redux';
+import {mapReducer} from 'react-redux-mapbox-gl';
 
+export default combineReducers(
+{
+	mapReducer
+	...other reducers
+});
+````
 ### Add overlay
 
 
