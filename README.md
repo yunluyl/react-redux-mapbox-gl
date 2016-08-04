@@ -109,7 +109,7 @@ render(
  options | object | yes | [Mapbox options](https://www.mapbox.com/mapbox-gl-js/api/#Map) used to create a new Map object, </br> options.style is required |
 
 ### MapReducer states
-mapReducer states can be used in any react module under `<Provider>` using the connect function from react-redux
+mapReducer states can be used in any react module under `<Provider>` using the **connect** function from react-redux
 ````js
 import {connect} from 'react-redux';
 import {Component} from 'react';
