@@ -132,7 +132,7 @@ If `<Mapbox>` prop mapEventListener is false
 
 mapReducer =  
 {  
-  mapLoaded : (boolean) set to true when the inital map loading is done,  
+&nbsp;&nbsp;mapLoaded : (boolean) set to true when the inital map loading is done,  
   viewport :  
   {  
 		width : (number) width of the map,
