@@ -132,7 +132,7 @@ render()
 ## Prerequisites
 react, redux, react-redux are needed to use this package
 ```
-  npm install react redux react-redux --save
+npm install react redux react-redux --save
 ```
 babel with presets is needed to compile
 ```
