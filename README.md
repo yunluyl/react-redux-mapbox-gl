@@ -106,6 +106,7 @@ render(
 :--------:|:----:|:--------:|:-------:|-------------|
  mapboxgl | object | no | undefined | mapboxgl object from Mapbox GL JS, </br> If using Mapbox GL JS with `<script>` tag, omit this prop |
  accessToken | string | yes | undefined | Mapbox API access token |
+ getMap | function | no | undefined | `<Mapbox>` passes the map object to its parent React element through this function | 
  options | object | yes | undefined | [Mapbox options](https://www.mapbox.com/mapbox-gl-js/api/#Map) used to create a new Map object; </br> options.style is required; |
  style | object | yes | undefined | React inline CSS style object used to style the container of the map; </br> style.width is required; </br> style.height is required; |
  mapEventListener | boolean | no | true | Enables/disables event listeners that control MapReducer state changes; see MapReducer states section for details |
