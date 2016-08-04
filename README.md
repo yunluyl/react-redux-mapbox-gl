@@ -79,11 +79,11 @@ import React from 'react';
 import {render} from 'react-dom';
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
-import {mapReducer} from 'react-redux-mapbox-gl';
+import {MapReducer} from 'react-redux-mapbox-gl';
 ...
 const reducer = combineReducers(
 {
-	mapReducer,
+	MapReducer,
 	//...other reducers in the app
 });
 
@@ -108,7 +108,7 @@ render(
  accessToken | string | yes | undefined | Mapbox API access token |
  options | object | yes | undefined | [Mapbox options](https://www.mapbox.com/mapbox-gl-js/api/#Map) used to create a new Map object; </br> options.style is required; |
  style | object | yes | undefined | React inline CSS style object used to style the container of the map; </br> style.width is required; </br> style.height is required; |
- mapEventListener | boolean | no | true | Enables/disables event listeners that control mapReducer state changes; see MapReducer states section for details |
+ mapEventListener | boolean | no | true | Enables/disables event listeners that control MapReducer state changes; see MapReducer states section for details |
  boundMargin | number | no | 0 | Adjust the distance from the boundary of the map that overlays stop displaying
  
 #### Examples
@@ -118,7 +118,7 @@ render(
 #### Examples
 
 ### MapReducer states
-mapReducer states can be used in any react module under `<Provider>` using the **connect** function from react-redux
+MapReducer states can be used in any react module under `<Provider>` using the **connect** function from react-redux
 ````js
 import {connect} from 'react-redux';
 import {Component} from 'react';
@@ -131,15 +131,15 @@ class example extends Component
 const mapState = (state) =>
 {
 	return {
-		mapState : state.mapReducer
+		mapState : state.MapReducer
 	};
 }
 
 export default connect(mapState)(example);
 ````
-mapReducer states when `<Mapbox>` prop mapEventListener is **false**
+MapReducer states when `<Mapbox>` prop mapEventListener is **false**
 ````js
-var mapReducer =
+var MapReducer =
 {
 	mapLoaded : false, //(boolean) set to true when the inital map loading is done
 	viewport :
@@ -152,9 +152,9 @@ var mapReducer =
 	}
 };
 ````
-mapReducer states when `<Mapbox>` prop mapEventListener is **true**
+MapReducer states when `<Mapbox>` prop mapEventListener is **true**
 ````js
-var mapReducer =
+var MapReducer =
 {
 	mapLoaded : false, //(boolean) set to true when the inital map loading is done
 	viewport :
