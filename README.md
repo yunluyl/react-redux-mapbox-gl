@@ -109,7 +109,7 @@ render(
 #### Examples
 
 ### MapReducer states
-The mapReducer states can be used in any react module under '<Provider>' using the connect function from react-redux
+The mapReducer states can be used in any react module under `<Provider>` using the connect function from react-redux
 ````js
 import {connect} from 'react-redux';
 import {Component} from 'react';
@@ -125,9 +125,11 @@ const mapState = (state) =>
 		mapState : state.mapReducer
 	};
 }
+
+export default connect(mapState)(example);
 ````
-If '<Mapbox>' prop mapEventListener is false
-````js
+If `<Mapbox>` prop mapEventListener is false
+
 mapReducer =
 {
 	mapLoaded : (boolean) set to true when the inital map loading is done,
@@ -140,9 +142,9 @@ mapReducer =
 		zoom : (number) the current zoom level of the map
 	}
 };
-````
-If '<Mapbox>' prop mapEventListener is true
-````js
+
+If `<Mapbox>` prop mapEventListener is true
+
 mapReducer =
 {
 	mapLoaded : (boolean) set to true when the inital map loading is done,
@@ -161,7 +163,7 @@ mapReducer =
 	boxzoom : (boolean) set to true when user is using boxzoom, false otherwise,
 	rotate : (boolean) set to true when user is rotating the map, false otherwise
 };
-````
+
 ### Overlay props
 
 ## Prerequisites
