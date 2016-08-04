@@ -128,7 +128,7 @@ const mapState = (state) =>
 
 export default connect(mapState)(example);
 ````
-If `<Mapbox>` prop mapEventListener is false
+If `<Mapbox>` prop mapEventListener is **false**
 ````js
 var mapReducer =
 {
@@ -143,7 +143,7 @@ var mapReducer =
 	}
 };
 ````
-If `<Mapbox>` prop mapEventListener is true
+If `<Mapbox>` prop mapEventListener is **true**
 ````js
 var mapReducer =
 {
