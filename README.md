@@ -143,7 +143,7 @@ babel-preset-stage-1
 babel-preset-stage-2
 babel-preset-stage-3
 ```
-## Spec
+## Specifications
 ### `<Mapbox>` props
  Property | Type | Required | Default | Description |
 :--------:|:----:|:--------:|:-------:|-------------|
