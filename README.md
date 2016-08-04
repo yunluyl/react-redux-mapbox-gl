@@ -106,10 +106,9 @@ render(
  mapboxgl | object | no | mapboxgl object from Mapbox GL JS, </br> If using Mapbox GL JS with `<script>` tag, omit this prop |
  accessToken | string | yes | Mapbox API access token |
  options | object | yes | [Mapbox options](https://www.mapbox.com/mapbox-gl-js/api/#Map) used to create a new Map object, </br> options.style is required |
-#### Examples
 
 ### MapReducer states
-#### mapReducer states can be used in any react module under `<Provider>` using the connect function from react-redux
+mapReducer states can be used in any react module under `<Provider>` using the connect function from react-redux
 ````js
 import {connect} from 'react-redux';
 import {Component} from 'react';
@@ -128,7 +127,7 @@ const mapState = (state) =>
 
 export default connect(mapState)(example);
 ````
-#### mapReducer states when `<Mapbox>` prop mapEventListener is **false**
+mapReducer states when `<Mapbox>` prop mapEventListener is **false**
 ````js
 var mapReducer =
 {
@@ -143,7 +142,7 @@ var mapReducer =
 	}
 };
 ````
-#### mapReducer states when `<Mapbox>` prop mapEventListener is **true**
+mapReducer states when `<Mapbox>` prop mapEventListener is **true**
 ````js
 var mapReducer =
 {
