@@ -130,10 +130,10 @@ export default connect(mapState)(example);
 ````
 If `<Mapbox>` prop mapEventListener is false
 
-mapReducer =
-{
-	mapLoaded : (boolean) set to true when the inital map loading is done,
-	viewport :
+mapReducer =  
+{  
+	mapLoaded : (boolean) set to true when the inital map loading is done,  
+	viewport :  
 	{
 		width : (number) width of the map,
 		height : (number) height of the map,
