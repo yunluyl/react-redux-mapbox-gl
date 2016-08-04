@@ -130,7 +130,19 @@ render()
 }
 ````
 ## Prerequisites
-
+react, redux, react-redux are needed to use this package
+```
+  npm install react redux react-redux --save
+```
+babel with presets is needed to compile
+```
+babel-preset-es2015
+babel-preset-react
+babel-preset-stage-0
+babel-preset-stage-1
+babel-preset-stage-2
+babel-preset-stage-3
+```
 ## Spec
 ### `<Mapbox>` props
  Property | Type | Required | Default | Description |
