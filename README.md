@@ -66,8 +66,8 @@ render()
   return (
     <Mapbox
       accessToken="your map access token"
-      style={this.mapStyle}
-      options={this.mapOptions}
+      style={mapStyle}
+      options={mapOptions}
     />
   );
 }
@@ -83,25 +83,51 @@ import {MapReducer} from 'react-redux-mapbox-gl';
 ...
 const reducer = combineReducers(
 {
-	MapReducer,
-	//...other reducers in the app
+  MapReducer,
+  //...other reducers in the app
 });
 
 const store = createStore(reducer);
 render(
-	<Provider store={store}>
-		<App />
-	</Provider>,
-	document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );
 ...
 ````
 ### Add overlays
+You can add customized React elements onto the map. They will be placed at the longitude latitude position spicified in the props. You can change the prop values from render to render.
 ````js
-<Mapbox
-  
->
-</Mapbox>
+render()
+{
+  const childProps1 = {
+    lnglat : [-122.203071, 37.7505],
+    width : 50,
+    height : 50,
+    neighborDistance : 5
+  };
+  const childProps2 = {
+    lnglat : [-132.2, 40.05],
+    width : 80,
+    height : 80,
+    neighborDistance : 30
+  }; 
+  return (
+    <Mapbox
+      //props - see spec section
+    >
+      <Child1
+        overlay={childProps1}
+        //...other props passed to your overlay
+      />
+      <Child2
+      	overlay={childProps2}
+        //...other props passed to your overlay
+      />
+    </Mapbox>
+  );
+}
 ````
 ## Prerequisites
 
