@@ -98,6 +98,7 @@ render(
 ````
 ### Add overlay
 
+## Prerequisites
 
 ## Spec
 ### `<Mapbox>` props
@@ -149,10 +150,10 @@ var mapReducer =
 	mapLoaded : false, //(boolean) set to true when the inital map loading is done
 	viewport :
 	{
-		width : , //(number) width of the map
-		height : , //(number) height of the map
-		lng : , //(number) the longitude that the map is currently centered at
-		lat : , //(number) the latitude that the map is currently centered at
+		width : 0, //(number) width of the map
+		height : 0, //(number) height of the map
+		lng : 0, //(number) the longitude that the map is currently centered at
+		lat : 0, //(number) the latitude that the map is currently centered at
 		zoom : 0 //(number) the current zoom level of the map
 	}
 	drag : undefined, //(boolean) set to true when user is dragging the map, false otherwise
@@ -164,5 +165,3 @@ var mapReducer =
 };
 ````
 ### Overlay props
-
-## Prerequisites
