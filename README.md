@@ -80,7 +80,7 @@ import {mapReducer} from 'react-redux-mapbox-gl';
 
 const reducer = combineReducers(
 {
-	mapReducer
+	mapReducer,
 	//...other reducers in the app
 });
 
