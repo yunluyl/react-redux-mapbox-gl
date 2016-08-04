@@ -97,7 +97,12 @@ render(
 ...
 ````
 ### Add overlays
-
+````js
+<Mapbox
+  
+>
+</Mapbox>
+````
 ## Prerequisites
 
 ## Spec
