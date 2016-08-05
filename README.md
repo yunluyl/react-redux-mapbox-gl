@@ -188,26 +188,31 @@ There is a overlay object you can define to tie the overlay module to a certain 
 Fileds of overlay object
  Field | Type | Required | Default | Description |
 :-----:|:----:|:--------:|:-------:|-------------|
-lnglat | array | yes | undefined | The overlay is placed at position [lng, lat] on the map |
-width | number | yes | undefined | Width of the overlay in pixel |
-height | number | yes | undefined | Height of the overlay in pixel |
-neighborDistance | number | no | 0 | If any two of the overlays' distance is shorter than neiborDistance, one of the overlays is not displayed; 
+ lnglat | array | yes | undefined | The overlay is placed at position [lng, lat] on the map |
+ width | number | yes | undefined | Width of the overlay in pixel |
+ height | number | yes | undefined | Height of the overlay in pixel |
+ neighborDistance | number | no | 0 | If any two of the overlays' distance is shorter than neiborDistance, one of the overlays is not displayed; |
 
 #### Examples
 ````js
+...
 const overlay = {
   lnglat : [12.323, -23.43],
   width : 100,
   height : 200
 };
-<Mapbox
-  //map props
->
-  <Child1
-    overlay={overlay}
-    //other customized props for Child1
-  />
-</Mapbox>
+
+return (
+  <Mapbox
+    //map props
+  >
+    <Child1
+      overlay={overlay}
+      //other customized props for Child1
+    />
+  </Mapbox>
+);
+...
 ````
 
 ### MapReducer states
