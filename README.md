@@ -153,7 +153,7 @@ babel-preset-stage-3
  options | object | yes | undefined | [Mapbox options](https://www.mapbox.com/mapbox-gl-js/api/#Map) used to create a new Map object; </br> options.style is required; |
  style | object | yes | undefined | React inline CSS style object used to style the container of the map; </br> style.width is required; </br> style.height is required; |
  mapEventListener | boolean | no | true | Enables/disables event listeners that control MapReducer state changes; see MapReducer states section for details |
- boundMargin | number | no | 0 | Adjust the distance from the boundary of the map that overlays stop displaying
+ boundMargin | number | no | 0 | Adjust the distance from the boundary of the map that overlays stop displaying |
  
 #### Examples
 Use Mapbox APIs in parent module
@@ -195,13 +195,10 @@ Fileds of overlay object
  
  Field | Type | Required | Default | Description |
 :-----:|:----:|:--------:|:-------:|-------------|
- mapboxgl | object | no | undefined | mapboxgl object from Mapbox GL JS, </br> If using Mapbox GL JS with `<script>` tag, omit this prop |
- accessToken | string | yes | undefined | Mapbox API access token |
- getMap | function | no | undefined | `<Mapbox>` passes the map object to its parent React element through this function | 
- options | object | yes | undefined | [Mapbox options](https://www.mapbox.com/mapbox-gl-js/api/#Map) used to create a new Map object; </br> options.style is required; |
- style | object | yes | undefined | React inline CSS style object used to style the container of the map; </br> style.width is required; </br> style.height is required; |
- mapEventListener | boolean | no | true | Enables/disables event listeners that control MapReducer state changes; see MapReducer states section for details |
- boundMargin | number | no | 0 | Adjust the distance from the boundary of the map that overlays stop displaying
+ lnglat | array | yes | undefined | The overlay is placed at position [lng, lat] on the map |
+ width | number | yes | undefined | Width of the overlay in pixel |
+ height | number | yes | undefined | Height of the overlay in pixel |
+ neighborDistance | number | no | 0 | If any two of the overlays' distance is shorter than neiborDistance, one of the overlays is not displayed |
 
 #### Examples
 ````js
