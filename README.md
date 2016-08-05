@@ -192,7 +192,7 @@ Fileds of overlay object
  lnglat | array | yes | undefined | The overlay is placed at position [lng, lat] on the map |
  width | number | yes | undefined | Width of the overlay in pixel |
  height | number | yes | undefined | Height of the overlay in pixel |
- neighborDistance | number | no | 0 | If any two of the overlays' distance is shorter than neiborDistance, one of the overlays is not displayed |
+ neighborDistance | number | no | 0 | If any two of the overlays' distance is shorter than neighborDistance, one of the overlays is not displayed |
 
 #### Examples
 ````js
