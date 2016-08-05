@@ -183,7 +183,7 @@ class example extends React.Component
 ````
  
 ### Overlay props
-There is a overlay object you can define to tie the overlay module to a certain location on the map. If you omit the overlay object, the overlay module is just a child of the `<Mapbox>` without any special behavior. Other than that, you can pass any prop to your overlays just like normal React modules.
+There is a overlay object you can define to tie the overlay module to a certain location on the map. If you omit the overlay object, the overlay module is just a child of the `<Mapbox>` without any special behavior. Other than that, you can pass any prop to your overlays just like normal React modules.  
 
 Fileds of overlay object
  Field | Type | Required | Default | Description |
