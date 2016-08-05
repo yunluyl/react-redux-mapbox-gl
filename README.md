@@ -193,8 +193,8 @@ Fileds of overlay object
  height | number | yes | undefined | Height of the overlay in pixel |
  neighborDistance | number | no | 0 | If any two of the overlays' distance is shorter than neiborDistance, one of the overlays is not displayed |
  
-  Property | Type | Required | Default | Description |
-:--------:|:----:|:--------:|:-------:|-------------|
+ Field | Type | Required | Default | Description |
+:-----:|:----:|:--------:|:-------:|-------------|
  mapboxgl | object | no | undefined | mapboxgl object from Mapbox GL JS, </br> If using Mapbox GL JS with `<script>` tag, omit this prop |
  accessToken | string | yes | undefined | Mapbox API access token |
  getMap | function | no | undefined | `<Mapbox>` passes the map object to its parent React element through this function | 
