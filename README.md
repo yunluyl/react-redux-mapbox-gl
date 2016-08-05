@@ -186,13 +186,7 @@ class example extends React.Component
 There is a overlay object you can define to tie the overlay module to a certain location on the map. If you omit the overlay object, the overlay module is just a child of the `<Mapbox>` without any special behavior. Other than that, you can pass any prop to your overlays just like normal React modules.  
 
 Fileds of overlay object  
- Field | Type | Required | Default | Description |
-:-----:|:----:|:--------:|:-------:|-------------|
- lnglat | array | yes | undefined | The overlay is placed at position [lng, lat] on the map |
- width | number | yes | undefined | Width of the overlay in pixel |
- height | number | yes | undefined | Height of the overlay in pixel |
- neighborDistance | number | no | 0 | If any two of the overlays' distance is shorter than neiborDistance, one of the overlays is not displayed |
- 
+
  Field | Type | Required | Default | Description |
 :-----:|:----:|:--------:|:-------:|-------------|
  lnglat | array | yes | undefined | The overlay is placed at position [lng, lat] on the map |
