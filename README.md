@@ -11,13 +11,14 @@
 npm install react-redux-mapbox-gl --save
 ```
 ## Examples
+1.  
 In root directory of this module
 ```
 npm install
 npm test
 ```
 Server starts at localhost:3000  
-------------------------------------
+2.  
 Example using Mapbox GL with Webpack  
 https://github.com/yunluyl/react-redux-mapbox-gl-example
 
