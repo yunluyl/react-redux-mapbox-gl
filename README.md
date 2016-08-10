@@ -10,18 +10,6 @@
 ```
 npm install react-redux-mapbox-gl --save
 ```
-## Examples
-
-### Example using Mapbox GL with Webpack  
-https://github.com/yunluyl/react-redux-mapbox-gl-example
-
-### Example using Mapbox GL with `<script>` tag
-In root directory of this module
-```
-npm install
-npm test
-```
-Server starts at localhost:3000  
 
 ## Usage
 ### Using Mapbox GL with Browserify or Webpack
@@ -134,11 +122,25 @@ render()
   );
 }
 ````
+
 ## Prerequisites
 react, redux, react-redux are needed to use this package
 ```
 npm install react redux react-redux --save
 ```
+
+## Examples
+### Example using Mapbox GL with Webpack  
+https://github.com/yunluyl/react-redux-mapbox-gl-example
+
+### Example using Mapbox GL with `<script>` tag
+In root directory of this module
+```
+npm install
+npm test
+```
+Server starts at localhost:3000  
+
 ## Specifications
 ### `<Mapbox>` props
  Property | Type | Required | Default | Description |
