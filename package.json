@@ -1,6 +1,6 @@
 {
   "name": "react-redux-mapbox-gl",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Embed React elements in Mapbox GL with Redux state control",
   "main": "./lib/index.js",
   "scripts": {
