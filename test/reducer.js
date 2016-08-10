@@ -1,5 +1,5 @@
 var combineReducers = require('redux').combineReducers;
-var mapReducer = require('../mapReducer.jsx');
+var mapReducer = require('../lib/mapReducer');
 
 module.exports = combineReducers(
 {

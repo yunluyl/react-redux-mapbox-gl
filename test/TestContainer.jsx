@@ -1,8 +1,8 @@
 'use strict';
 import React from 'react';
 import {connect} from 'react-redux';
-import * as action from '../mapActions.js';
-import Mapbox from '../Mapbox.jsx';
+import * as action from '../lib/mapActions';
+import Mapbox from '../lib/Mapbox';
 import Marker from './Marker.jsx';
 import mapAccessToken from './mapToken.js';
 

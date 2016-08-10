@@ -8,11 +8,6 @@ app.set('view engine', 'pug');
 console.log(__dirname);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
-app.get('/', function(req, res)
-{
-	res.render('index');
-});
-
 
 app.listen(3000, function()
 {

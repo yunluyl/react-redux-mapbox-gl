@@ -10,4 +10,4 @@ sftp-config.json
 mapToken.js
 bundle.js
 bundle.js.map
-lib/
+src/
