@@ -4,7 +4,7 @@
   "description": "Embed React elements in Mapbox GL with Redux state control",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "node ./test/getMapToken.js && webpack --progress && node ./test/server.js",
+    "test": "babel src -d lib && node ./test/getMapToken.js && webpack --progress && node ./test/server.js",
     "version": "babel src -d lib"
   },
   "keywords": [
